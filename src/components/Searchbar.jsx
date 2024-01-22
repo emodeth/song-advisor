@@ -1,9 +1,20 @@
+import { useSongs } from "../contexts/SongContex";
+
 function Searchbar() {
+  const { setSearchQuery, searchQuery, getSongs } = useSongs();
+
   return (
-    <form className="relative text-[#b3b3b3] transition duration-200 group border-[#121212] border-2 hover:border-[#414141] overflow-hidden rounded-full">
+    <form className="relative text-[#b3b3b3] transition duration-200 group border-[#121212] border-2 hover:border-[#414141] overflow-hidden rounded-full w-full">
       <input
-        className=" bg-[#242424] rounded-full w-full cursor-pointer py-3 px-10 placeholder-[#b3b3b3] transition duration-200 group-hover:bg-[#2a2a2a]"
+        className=" bg-[#242424] rounded-full w-full cursor-pointer py-3 px-11 placeholder-[#b3b3b3] transition duration-200 group-hover:bg-[#2a2a2a]"
         placeholder="What do you want to listen?"
+        onChange={(e) => setSearchQuery(e.target.value)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            e.preventDefault();
+            getSongs(searchQuery);
+          }
+        }}
       />
       <svg
         data-encore-id="icon"

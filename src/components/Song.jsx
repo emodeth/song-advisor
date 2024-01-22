@@ -1,10 +1,13 @@
-function Song({ songImg, songName, songWriter }) {
+function Song({ songId, songImg, songName, songWriter, handleClick }) {
   return (
-    <div className="flex flex-col gap-3 bg-[#171717] py-8 px-5 rounded-md cursor-pointer transition-all duration-300 hover:bg-[#282828]">
+    <div
+      onClick={() => handleClick(songId)}
+      className="flex flex-col gap-3 bg-[#171717] py-8 px-5 rounded-md cursor-pointer transition-all duration-300 hover:bg-[#282828]"
+    >
       <img
         className="w-[232px] h-[232px] rounded-md"
         src={songImg}
-        alt="song-1"
+        alt={`song-${songId}`}
       />
       <div className="">
         <p className="text-2xl font-semibold">{songName}</p>

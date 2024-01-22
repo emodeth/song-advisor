@@ -1,16 +1,21 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+import { SongProvider } from "./contexts/SongContex";
 import Home from "./pages/Home";
 import Search from "./pages/Search";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/search" element={<Search />} />
-      </Routes>
-    </BrowserRouter>
+    <SongProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="search">
+            <Route path=":songId" element={<Search />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </SongProvider>
   );
 }
 
