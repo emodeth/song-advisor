@@ -5,6 +5,7 @@ const SongContext = createContext();
 function SongProvider({ children }) {
   const [accessToken, setAccessToken] = useState();
   const [searchQuery, setSearchQuery] = useState();
+  const [searchedSongs, setSearchedSongs] = useState();
 
   async function getSongs(searchQuery) {
     const searchParameters = {
@@ -20,12 +21,19 @@ function SongProvider({ children }) {
       searchParameters
     );
     const data = await res.json();
-    console.log(data);
+    console.log(data.tracks.items);
+    setSearchedSongs(data.tracks.items);
   }
 
   return (
     <SongContext.Provider
-      value={{ setAccessToken, searchQuery, setSearchQuery, getSongs }}
+      value={{
+        setAccessToken,
+        searchQuery,
+        setSearchQuery,
+        getSongs,
+        searchedSongs,
+      }}
     >
       {children}
     </SongContext.Provider>
