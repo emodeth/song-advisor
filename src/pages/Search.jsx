@@ -1,6 +1,7 @@
 import SongButton from "../components/SongButton";
 import Searchbar from "../components/Searchbar";
-import { useParams } from "react-router-dom";
+import BackIcon from "../components/BackIcon";
+import { Link, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useSongs } from "../contexts/SongContex";
 import SearchSection from "../components/SearchSection";
@@ -40,7 +41,10 @@ function Search() {
   );
 
   return (
-    <div className="bg-[#121212] w-screen h-screen flex flex-col items-center p-6">
+    <div className="bg-[#121212] w-screen h-screen flex flex-col items-center p-6 relative">
+      <Link to="/">
+        <BackIcon />
+      </Link>
       <div className="w-1/4">
         <Searchbar />
       </div>
