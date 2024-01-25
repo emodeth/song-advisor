@@ -6,13 +6,14 @@ import { useEffect } from "react";
 import { useSongs } from "../contexts/SongContex";
 import SearchSection from "../components/SearchSection";
 import SearchedSongItem from "../components/SearchedSongItem";
+import Loader from "../components/Loader";
 
 const CLIENT_ID = "d02b8315f12045e382a4fb528590f28e";
 const CLIENT_SECRET = "212257d604834f9caf97f09e58b3f003";
 
 function Search() {
   const { songId } = useParams();
-  const { setAccessToken, searchedSongs } = useSongs();
+  const { setAccessToken, searchedSongs, isSpotifyLoading } = useSongs();
 
   useEffect(
     function () {
@@ -57,13 +58,13 @@ function Search() {
         </SongButton>
       </div>
       <SearchSection>
+        {isSpotifyLoading ? <Loader /> : null}
         {searchedSongs?.map((song, i) => (
           <SearchedSongItem
             key={i}
+            currentSong={songId}
             songId={i}
-            songImg={song.album.images[2].url}
-            songName={song.name}
-            songWriter={song.artists[0].name}
+            song={song}
           />
         ))}
       </SearchSection>
