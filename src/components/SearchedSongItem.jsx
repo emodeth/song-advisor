@@ -2,7 +2,7 @@ import { useSongs } from "../contexts/SongContex";
 import { useNavigate } from "react-router-dom";
 
 function SearchedSongItem({ songId, song, currentSong }) {
-  const { setSongs, setSearchedSongs } = useSongs();
+  const { setSongs, setSearchedSongs, setSearchQuery } = useSongs();
   const navigate = useNavigate();
 
   return (
@@ -10,6 +10,7 @@ function SearchedSongItem({ songId, song, currentSong }) {
       onClick={() => {
         setSongs(currentSong, song);
         setSearchedSongs(null);
+        setSearchQuery("");
         navigate("/");
       }}
       className="flex items-center gap-3 text-white bg-[#181818] cursor-pointer transition-all p-3 rounded-md hover:bg-[#282828]"
